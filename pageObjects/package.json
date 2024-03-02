@@ -1,0 +1,10 @@
+{
+    "name": "pageObjects",
+    "version": "1.0.0",
+    "description": "Page Objects for my project",
+    "main": "index.py",
+    "scripts": {
+      "test": "pytest"
+    }
+  }
+  

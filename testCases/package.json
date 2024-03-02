@@ -1,0 +1,10 @@
+{
+    "name": "testCases",
+    "version": "1.0.0",
+    "description": "Test Cases for my project",
+    "main": "index.py",
+    "scripts": {
+      "test": "pytest"
+    }
+  }
+  

@@ -1,0 +1,10 @@
+{
+    "name": "utilities",
+    "version": "1.0.0",
+    "description": "Utilities for my project",
+    "main": "index.py",
+    "scripts": {
+      "test": "pytest"
+    }
+  }
+  
