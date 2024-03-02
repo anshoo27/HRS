@@ -1,10 +1,16 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture
 def browser():
-    # Initialize WebDriver with correct path to chromedriver executable
-    driver = webdriver.Chrome("/Users/mac/Documents/Project/hrs_booking_automation/HRS/chromedriver/chromedriver")
+    # Configure ChromeOptions
+    chrome_options = Options()
+    # Add any desired options here, e.g., headless mode
+    # chrome_options.add_argument("--headless")
+
+    # Initialize WebDriver with ChromeOptions
+    driver = webdriver.Chrome(options=chrome_options)
     yield driver
     # Teardown - close the browser
     driver.quit()
