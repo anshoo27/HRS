@@ -97,14 +97,14 @@ def main():
     # Initialize WebDriver
     driver = initialize_driver()
     navigate_to_hrs_website(driver)
-    # search_for_hotels(driver)
-    # filter_hotels_by_availability(driver)
-    # select_hotel(driver)
-    # book_hotel(driver)
-    # check_booking_details(driver)
-    # view_hotel_details(driver)
-    # navigate_home(driver)
-    # logout(driver)
+    search_for_hotels(driver)
+    filter_hotels_by_availability(driver)
+    select_hotel(driver)
+    book_hotel(driver)
+    check_booking_details(driver)
+    view_hotel_details(driver)
+    navigate_home(driver)
+    logout(driver)
     driver.quit()
 
 
