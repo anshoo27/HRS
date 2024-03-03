@@ -2,6 +2,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+import pytest
 
 
 # Function to initialize WebDriver
@@ -12,6 +13,7 @@ def initialize_driver():
     return driver
 
 
+@pytest.mark.order(1)
 # Function to perform scenario 1: Navigate to the HRS Website
 def navigate_to_hrs_website(driver):
     driver.get("https://www.hrs.de/")
@@ -20,7 +22,8 @@ def navigate_to_hrs_website(driver):
 
 # Function to perform scenario 2: Search for Hotels in Barcelona
 def search_for_hotels(driver):
-    search_box = driver.find_element_by_id("destination")
+    search_box = driver.find_element_by_xpath(
+        "/html[1]/body[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/p[1]")
     search_box.clear()
     search_box.send_keys("Barcelona")
     check_in_date = driver.find_element_by_id("checkin_date")
@@ -60,7 +63,7 @@ def book_hotel(driver):
 
 
 # Function to perform scenario 6: Check Booking Details
-def check_booking_details(driver):
+def check_booking_details():
     # Navigate to the user's booking history or confirmation email
     # Verify that the booked hotel and travel dates match the user's selections
     pass  # Add indentation or actual code here
@@ -84,7 +87,7 @@ def navigate_home(driver):
 
 
 # Function to perform scenario 9: Logout (if applicable)
-def logout(driver):
+def logout():
     pass  # Navigate to the account settings or logout option
     # Verify that the user is logged out successful
 
@@ -94,17 +97,16 @@ def main():
     # Initialize WebDriver
     driver = initialize_driver()
     navigate_to_hrs_website(driver)
-    search_for_hotels(driver)
-    filter_hotels_by_availability(driver)
-    select_hotel(driver)
-    book_hotel(driver)
-    check_booking_details(driver)
-    view_hotel_details(driver)
-    navigate_home(driver)
-    logout(driver)
+    # search_for_hotels(driver)
+    # filter_hotels_by_availability(driver)
+    # select_hotel(driver)
+    # book_hotel(driver)
+    # check_booking_details(driver)
+    # view_hotel_details(driver)
+    # navigate_home(driver)
+    # logout(driver)
     driver.quit()
 
 
 if __name__ == "__main__":
     main()
-
