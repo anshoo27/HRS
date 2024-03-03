@@ -4,6 +4,9 @@ import pytest
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 
 # Function to initialize WebDriver
@@ -30,11 +33,8 @@ def test_search_for_hotels():
     # Initialize WebDriver
     driver = initialize_driver()
     driver.get("https://www.hrs.de/")
-    time.sleep(3)
-    actions = ActionChains(driver)
-    actions.send_keys(Keys.ESCAPE).perform()
-    time.sleep(3)
-    driver.find_element_by_xpath("//div[@class='banner-actions-container']/button").click()
+    time.sleep(5)
+    driver.find_element_by_xpath("//button[text()='Accept All Cookies']").click()
     time.sleep(3)
     # Accept Cookies
     # Find the search box using its class name
