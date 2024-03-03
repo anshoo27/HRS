@@ -1,8 +1,9 @@
-#import time
 from selenium import webdriver
-#from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 import pytest
+import time
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 # Function to initialize WebDriver
@@ -13,29 +14,36 @@ def initialize_driver():
     return driver
 
 
-@pytest.mark.order(1)
 # Function to perform scenario 1: Navigate to the HRS Website
-def navigate_to_hrs_website(driver):
+@pytest.mark.order(1)
+def test_navigate_to_hrs_website():
+    # Initialize WebDriver
+    driver = initialize_driver()
     driver.get("https://www.hrs.de/")
     assert "HRS" in driver.title  # Verify that the homepage is loaded
+    driver.quit()
 
 
 # Function to perform scenario 2: Search for Hotels in Barcelona
-def search_for_hotels(driver):
-    search_box = driver.find_element_by_class("DestinationSearchOpener_destinationFormat__hwuCN")
-    search_box.clear()
-    search_box.send_keys("Barcelona")
-    assert "Barcelona" in driver.title  # Verify that the search results page loaded
-
-
-# Function to perform the main test script
-def main():
+@pytest.mark.order(2)
+def test_search_for_hotels():
     # Initialize WebDriver
     driver = initialize_driver()
-    navigate_to_hrs_website(driver)
-    search_for_hotels(driver)
-    #driver.quit()
+    driver.get("https://www.hrs.de/")
+    time.sleep(3)
+    actions = ActionChains(driver)
+    actions.send_keys(Keys.ESCAPE).perform()
+    time.sleep(3)
+    driver.find_element_by_xpath("//div[@class='banner-actions-container']/button").click()
+    time.sleep(3)
+    # Accept Cookies
+    # Find the search box using its class name
+    search_box = driver.find_element_by_id("DestinationSearchInput")
+    search_box.clear()
+    search_box.send_keys("Barcelona")
+    assert "Barcelona" in driver.title  # Verify search results page loaded
+    driver.quit()
 
 
 if __name__ == "__main__":
-    main()
+    pytest.main()
